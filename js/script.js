@@ -10,18 +10,10 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
+//declare an empty quotes array
 let quotes =[];
-/*
-  quotes.push({quotation: 'hey lose the day in expectation of the night, and the night in fear of the dawn.', source: 'Seneca', citation: '', year: '' });
-  quotes.push({quotation: 'Just keep in mind: the more we value things outside our control, the less control we have. ', source: 'Epictetus',citation: '', year: '' });
-  quotes.push({quotation: 'It does not matter what you bear, but how you bear it. ', source: 'Seneca',citation: '', year: '' });
-  quotes.push({quotation: 'Learn to be indifferent to what makes no difference.', source: ' Marcus Aurelius',citation: '', year: '' });
-  quotes.push({quotation: 'The more you seek the uncomfortable, the more you will become comfortable. ', source: 'Conor McGregor',citation: '', year: '' });
-  quotes.push({quotation: 'Everyone has a plan \'till they get punched in the mouth.', source: 'Mike Tyson',citation: '', year: '' });
-  quotes.push({quotation: 'Behind every great man is a woman rolling her eyes.', source: 'Jim Carey',citation: '', year: '' });
-  quotes.push({quotation: 'Any man can learn anything he will, but no man can teach except to those who want to learn', source: 'Henry Ford',citation: '01/01/1924', year: 'Ford News' });
-  quotes.push({quotation: 'Education is preeminently a matter of quality, not amount', source: 'Henry Ford',citation: '01/01/1924', year: 'Ford News' });
-  */
+
+ // We need an origination source for the quote data
  const quoteStringArr = [
    //array pattern ['QUOTE','SOURCE','CITATION','YEAR']
    ['hey lose the day in expectation of the night, and the night in fear of the dawn.', 'Seneca', '', ''],
@@ -43,28 +35,31 @@ let quotes =[];
 
  //populate quote objects
  for(let i = 0; i < quoteStringArr.length; i++){
-   //populate the objects with values from the multidimensional arrays
-  quotes[i].quotation = quoteStringArr[i][0];
-  quotes[i].source = quoteStringArr[i][1];
+     //populate the objects with values from the multidimensional arrays
+     quotes[i].quotation = quoteStringArr[i][0];
+     quotes[i].source = quoteStringArr[i][1];
 
-  //ensure the field has a valid value otherwise it should remain undefined
-  if(quoteStringArr[i][2].length >= 3){
-    quotes[i].citation = quoteStringArr[i][2];
+     //ensure the field has a valid value otherwise it should remain undefined
+     if(quoteStringArr[i][2].length >= 3){
+         quotes[i].citation = quoteStringArr[i][2];
+      }
+     //ensure the field has a valid value otherwise it should remain undefined
+     if(quoteStringArr[i][3].length >= 4){
+         quotes[i].year = quoteStringArr[i][3];
+     }
   }
-    //ensure the field has a valid value otherwise it should remain undefined
-  if(quoteStringArr[i][3].length >= 4){
-    quotes[i].year = quoteStringArr[i][3];
-  }
- }
 
 //reusable code to create empty or populated objects
 function createQuoteObject(quotation, source, citation, year){
-  let newQuotationObject = {};
-  newQuotationObject.quotation = quotation;
-  newQuotationObject.source = source;
-  newQuotationObject.citation = citation;
-  newQuotationObject.year = year;
-  return newQuotationObject;
+    //create an empty object than add properties and values to the object
+    let newQuotationObject = {};
+
+    newQuotationObject.quotation = quotation;
+    newQuotationObject.source = source;
+    newQuotationObject.citation = citation;
+    newQuotationObject.year = year;
+
+    return newQuotationObject;
 }
 
 /***
@@ -80,21 +75,21 @@ function getRandomQuote(){
  * `printQuote` function
 ***/
 function printQuote(){
-  const quote = getRandomQuote();
-  let html = `
+    const quote = getRandomQuote();
+    let html = `
         <p class="quote"> ${quote.quotation}</p>
         <p class="source"> ${quote.source} `;
     if(quote.citation){
-      html += `
-           <span class="citation">${quote.citation}</span>`;
+        html += `
+          <span class="citation">${quote.citation}</span>`;
     }
     if(quote.year){
-      html += `
-            <span class="year">${quote.year}</span>`;
+        html += `
+          <span class="year">${quote.year}</span>`;
     }
-   html + "</p>";
+    html + "</p>";
 
-   return document.getElementById('quote-box').innerHTML = html; 
+    return document.getElementById('quote-box').innerHTML = html; 
 }
 
 
