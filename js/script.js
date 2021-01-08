@@ -15,7 +15,7 @@ let quotes =[];
 
  // We need an origination source for the quote data
  const quoteStringArr = [
-   //array pattern ['QUOTE','SOURCE','CITATION','YEAR']
+   //multi-dimensional inner array pattern ['QUOTE','SOURCE','CITATION','YEAR']
    ['hey lose the day in expectation of the night, and the night in fear of the dawn.', 'Seneca', '', ''],
    ['Just keep in mind: the more we value things outside our control, the less control we have.', 'Epictetus', '', ''],
    ['It does not matter what you bear, but how you bear it. ', 'Seneca','', ''],
@@ -28,12 +28,12 @@ let quotes =[];
  ];
 
 
- //add  empty quote objects
+ //add  empty quote objects - matches the number of elements in the qquoteStringArr array
  for(let i = 0; i < quoteStringArr.length; i++){
   quotes.push(createQuoteObject());
  }
 
- //populate quote objects
+ //populate quote objects - matched the number of elements in the squoteStringArr array
  for(let i = 0; i < quoteStringArr.length; i++){
      //populate the objects with values from the multidimensional arrays
      quotes[i].quotation = quoteStringArr[i][0];
@@ -66,10 +66,13 @@ function createQuoteObject(quotation, source, citation, year){
  * `getRandomQuote` function
 ***/
 function getRandomQuote(){
+  //ensure the array length matches with the number of items in the array
   const randomQuoteNumber = Math.floor((Math.random() * quotes.length-1)+1);
+  console.log('randomQuoteNumber: ' + randomQuoteNumber);
   return quotes[randomQuoteNumber];
 }
 
+const getRGBValue = (floor, ceiling) => Math.floor((Math.random() * (ceiling - floor)) + floor)+1;
 
 /***
  * `printQuote` function
@@ -89,9 +92,17 @@ function printQuote(){
     }
     html + "</p>";
 
-    return document.getElementById('quote-box').innerHTML = html; 
+    document.getElementById('quote-box').innerHTML = html; 
+    changeBackgroundColor();
+    changeQuoteFontColor();
 }
 
+function changeBackgroundColor(){
+  document.body.style.backgroundColor = `rgb(${getRGBValue(0,100)}, ${getRGBValue(0,100)} ,${getRGBValue(0,100)})`;
+}
+function changeQuoteFontColor(){
+  document.body.style.color = `rgb(${getRGBValue(155,255)}, ${getRGBValue(155,255)} ,${getRGBValue(155,255)})`;  
+}
 
 /***
  * click event listener for the print quote button
