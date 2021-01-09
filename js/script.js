@@ -47,7 +47,7 @@ function loadQuoteObjects(){
 ***/
 function getRandomQuote(){
   //ensure the array length matches with the number of items in the array
-  const randomQuoteNumber = Math.floor((Math.random() * quotes.length-1)+1);
+  const randomQuoteNumber = Math.floor((Math.random() * quotes.length));
   let selectedQuote = quotes[randomQuoteNumber];
 
   //ensure all objects have a displayCount property and variable, even if the orginal object doesn't
